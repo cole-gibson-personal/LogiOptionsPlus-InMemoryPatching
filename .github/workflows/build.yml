@@ -1,4 +1,4 @@
-name: Build version.dll
+name: Build version.dll for x64
 
 on:
   push:
@@ -25,11 +25,11 @@ jobs:
     - name: Restore NuGet packages
       run: nuget restore InMemoryPatching.sln
 
-    - name: Build the solution
-      run: msbuild InMemoryPatching.sln /p:Configuration=Release /p:Platform=Win32
+    - name: Build the solution for x64
+      run: msbuild InMemoryPatching.sln /p:Configuration=Release /p:Platform=x64
 
     - name: Upload version.dll
       uses: actions/upload-artifact@v3
       with:
-        name: version-dll
-        path: bin\Release\version.dll
+        name: version-dll-x64
+        path: x64\Release\version.dll
