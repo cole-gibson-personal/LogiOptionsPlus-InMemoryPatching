@@ -26,10 +26,4 @@ jobs:
       run: nuget restore InMemoryPatching.sln
 
     - name: Build the solution
-      run: msbuild InMemoryPatching.sln /p:Configuration=Release
-
-    - name: Upload version.dll
-      uses: actions/upload-artifact@v3
-      with:
-        name: version-dll
-        path: bin\Release\version.dll
+      run: msbuild InMemoryPatching.sln /p:Configuration=Release /p:Platform=x86
