@@ -3,7 +3,7 @@ image: Visual Studio 2022
 
 # Specify the build script
 build_script:
-  - msbuild LogiOptionsPlus-InMemoryPatching.sln /p:Configuration=Release
+  - msbuild InMemoryPatching.sln /p:Configuration=Release
 
 # Define artifacts to save after the build
 artifacts:
