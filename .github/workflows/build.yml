@@ -1,0 +1,35 @@
+name: Build version.dll
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up MSBuild
+      uses: microsoft/setup-msbuild@v1
+
+    - name: Set up NuGet
+      uses: NuGet/setup-nuget@v1
+
+    - name: Restore NuGet packages
+      run: nuget restore InMemoryPatching.sln
+
+    - name: Build the solution
+      run: msbuild InMemoryPatching.sln /p:Configuration=Release
+
+    - name: Upload version.dll
+      uses: actions/upload-artifact@v3
+      with:
+        name: version-dll
+        path: bin\Release\version.dll
